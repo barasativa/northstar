@@ -1,2 +1,0 @@
-# northstar
-website roadmap 
