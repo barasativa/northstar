@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Lucid Dreams — PT Northstar Group · Wealth Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+/* ══ LIGHT THEME ══ */
+[data-theme="light"]{
+  --bg:#faf7f2;
+  --surface:#ffffff;
+  --surface2:#f5f1ea;
+  --surface3:#ede8df;
+  --border:rgba(0,0,0,0.07);
+  --border2:rgba(0,0,0,0.12);
+  --text:#1a1612;
+  --muted:rgba(26,22,18,0.6);
+  --dim:rgba(26,22,18,0.38);
+  --ink-blue:#1a3a5c;
+  --ink-teal:#0d6e6e;
+  --ink-gold:#b8860b;
+  --ink-amber:#c96a00;
+  --ink-green:#1a5c3a;
+  --ink-purple:#4a2a6e;
+  --accent-blue:#2563eb;
+  --accent-teal:#0f9090;
+  --accent-gold:#d4a017;
+  --accent-amber:#e07820;
+  --accent-green:#16a34a;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08),0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.10),0 4px 12px rgba(0,0,0,0.06);
+  --chart-grid:rgba(0,0,0,0.06);
+  --toggle-bg:#e2ddd6;
+}
+
+/* ══ DARK THEME ══ */
+[data-theme="dark"]{
+  --bg:#04040c;
+  --surface:#0a0a16;
+  --surface2:#0f0f1e;
+  --surface3:#13132a;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.1);
+  --text:#eeeeff;
+  --muted:rgba(238,238,255,0.55);
+  --dim:rgba(238,238,255,0.30);
+  --ink-blue:#7eb3e8;
+  --ink-teal:#00e5ff;
+  --ink-gold:#ffe135;
+  --ink-amber:#ff6320;
+  --ink-green:#00ff87;
+  --ink-purple:#c084fc;
+  --accent-blue:#4361ff;
+  --accent-teal:#00e5ff;
+  --accent-gold:#ffe135;
+  --accent-amber:#ff6320;
+  --accent-green:#00ff87;
+  --shadow-sm:0 1px 8px rgba(0,0,0,0.4);
+  --shadow-md:0 4px 24px rgba(0,0,0,0.5);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.6);
+  --chart-grid:rgba(255,255,255,0.06);
+  --toggle-bg:#1a1a2e;
+}
+
+:root{
+  --btc:#f7931a;
+  --eth:#627eea;
+  --sol:#9945ff;
+  --avax:#00d4aa;
+  --bca-blue:#0078d4;
+  --bri-blue:#00a0c6;
+  --bni-orange:#e87722;
+  --mandiri-yellow:#c8900a;
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  font-family:'DM Sans',sans-serif;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  transition:background 0.4s ease,color 0.4s ease;
+}
+
+/* ══ DARK MODE BG ORBS ══ */
+.dark-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 0.4s}
+[data-theme="dark"] .dark-orbs{opacity:1}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:0;animation:orbPulse 14s ease-in-out infinite;will-change:opacity,transform}
+.o1{width:700px;height:700px;background:radial-gradient(#9d4edd,transparent 70%);top:-250px;left:-150px;animation-delay:0s}
+.o2{width:550px;height:550px;background:radial-gradient(#ff2d9b,transparent 70%);top:15%;right:-180px;animation-delay:3s}
+.o3{width:650px;height:650px;background:radial-gradient(#00e5ff,transparent 70%);bottom:-180px;left:5%;animation-delay:6s}
+@keyframes orbPulse{0%{opacity:0;transform:scale(0.9)}50%{opacity:0.13;transform:scale(1.07)}100%{opacity:0;transform:scale(0.9)}}
+
+/* ══ LIGHT MODE BG SHAPES ══ */
+.light-shapes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:1;transition:opacity 0.4s}
+[data-theme="dark"] .light-shapes{opacity:0}
+.bs{position:absolute;border-radius:50%;opacity:0.055}
+.bs1{width:800px;height:800px;background:radial-gradient(#d4a017,transparent 70%);top:-300px;right:-200px}
+.bs2{width:600px;height:600px;background:radial-gradient(#0f9090,transparent 70%);bottom:-200px;left:-100px}
+.bs3{width:400px;height:400px;background:radial-gradient(#2563eb,transparent 70%);top:40%;right:10%}
+
+/* ══ TOGGLE BUTTON ══ */
+.theme-toggle{
+  position:fixed;top:20px;right:20px;z-index:1000;
+  width:52px;height:28px;border-radius:100px;
+  background:var(--toggle-bg);border:1.5px solid var(--border2);
+  cursor:pointer;transition:all 0.3s ease;
+  display:flex;align-items:center;padding:3px;
+  box-shadow:var(--shadow-md);
+}
+.toggle-thumb{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--surface);
+  transition:transform 0.3s cubic-bezier(.34,1.56,.64,1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;box-shadow:var(--shadow-sm);
+}
+[data-theme="dark"] .toggle-thumb{transform:translateX(24px)}
+
+/* ══ LAYOUT ══ */
+.wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:52px 22px 100px}
+
+/* ══ HERO ══ */
+.hero{text-align:center;padding-bottom:60px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid rgba(13,110,110,0.3);background:rgba(13,110,110,0.07);
+  border-radius:100px;padding:7px 22px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--ink-teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:30px;
+  transition:all 0.3s;
+}
+[data-theme="dark"] .hero-eyebrow{border-color:rgba(0,229,255,0.35);background:rgba(0,229,255,0.06);color:#00e5ff}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-teal);animation:blink 1.4s ease-in-out infinite;flex-shrink:0}
+[data-theme="dark"] .hero-eyebrow .dot{background:#00e5ff}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,8vw,80px);font-weight:900;line-height:0.92;letter-spacing:-2px;
+  color:var(--ink-blue);margin-bottom:20px;transition:color 0.3s;
+}
+[data-theme="dark"] .hero h1{
+  background:linear-gradient(135deg,#fff 0%,#00e5ff 35%,#ff2d9b 65%,#ffe135 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--accent-gold),var(--accent-amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+[data-theme="dark"] .hero h1 em{background:none;-webkit-text-fill-color:transparent}
+.hero-desc{font-size:14px;color:var(--muted);max-width:520px;margin:0 auto 26px;line-height:1.8}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{
+  background:var(--surface);border:1.5px solid var(--border2);
+  border-radius:100px;padding:5px 16px;
+  font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;
+  box-shadow:var(--shadow-sm);transition:all 0.3s;
+}
+
+/* ══ SECTION LABEL ══ */
+.section-label{display:flex;align-items:center;gap:14px;margin:46px 0 20px}
+.section-label span{font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px}
+.section-label::before{background:linear-gradient(90deg,transparent,var(--border2))}
+.section-label::after{background:linear-gradient(90deg,var(--border2),transparent)}
+
+/* ══ CARD ══ */
+.card{
+  background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:28px;
+  position:relative;overflow:hidden;
+  transition:transform 0.28s ease,box-shadow 0.28s ease,background 0.4s,border-color 0.4s;
+  box-shadow:var(--shadow-md);
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+[data-theme="dark"] .card{border-radius:24px}
+
+.t-blue{border-top:3px solid var(--accent-blue)}
+.t-teal{border-top:3px solid var(--accent-teal)}
+.t-gold{border-top:3px solid var(--accent-gold)}
+.t-amber{border-top:3px solid var(--accent-amber)}
+.t-green{border-top:3px solid var(--accent-green)}
+.t-btc{border-top:3px solid var(--btc)}
+.t-purple{border-top:3px solid var(--ink-purple)}
+
+/* dark glow */
+[data-theme="dark"] .t-teal{box-shadow:0 0 45px rgba(0,229,255,0.09),inset 0 0 40px rgba(0,229,255,0.02)}
+[data-theme="dark"] .t-green{box-shadow:0 0 45px rgba(0,255,135,0.09),inset 0 0 40px rgba(0,255,135,0.02)}
+[data-theme="dark"] .t-gold{box-shadow:0 0 60px rgba(245,200,66,0.13),inset 0 0 60px rgba(245,200,66,0.03)}
+[data-theme="dark"] .t-btc{box-shadow:0 0 60px rgba(247,147,26,0.13),inset 0 0 60px rgba(247,147,26,0.03)}
+[data-theme="dark"] .t-blue{box-shadow:0 0 45px rgba(67,97,255,0.09),inset 0 0 40px rgba(67,97,255,0.02)}
+
+/* ══ PILL ══ */
+.pill{
+  display:inline-flex;align-items:center;gap:5px;
+  border-radius:100px;padding:4px 14px;
+  font-family:'DM Mono',monospace;font-size:9px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;border:1px solid transparent;
+}
+
+/* ══ FLOW CONNECTOR ══ */
+.flow-conn{display:flex;align-items:center;flex-direction:column;padding:14px 0;gap:2px}
+.fc-line{width:2px;height:30px;border-radius:2px;background:var(--border2)}
+.fc-arrowhead{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent}
+.fc-label{
+  font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;
+  background:var(--surface2);border:1.5px solid var(--border2);border-radius:100px;padding:4px 16px;margin:4px 0;
+  box-shadow:var(--shadow-sm);
+}
+
+/* ══ NS HERO ══ */
+.ns-hero{background:linear-gradient(145deg,rgba(26,58,92,0.04),rgba(13,110,110,0.04));text-align:center;padding:38px 28px}
+[data-theme="dark"] .ns-hero{background:linear-gradient(145deg,rgba(0,229,255,0.06),rgba(67,97,255,0.06),rgba(157,78,221,0.06))}
+.ns-logo{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,50px);font-weight:900;color:var(--ink-blue);letter-spacing:-1px;margin-bottom:4px;transition:all 0.3s}
+[data-theme="dark"] .ns-logo{background:linear-gradient(135deg,#fff,#00e5ff,#9d4edd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ns-tagline{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-teal);opacity:0.7;letter-spacing:3px;text-transform:uppercase;margin-bottom:22px}
+.ns-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border-radius:14px;overflow:hidden;margin-top:20px}
+.ns-stat{background:var(--surface2);padding:18px 12px;text-align:center;transition:background 0.3s}
+.ns-stat-val{font-family:'Playfair Display',serif;font-size:clamp(16px,3vw,22px);font-weight:800;color:var(--ink-blue);transition:color 0.3s}
+[data-theme="dark"] .ns-stat-val{background:linear-gradient(135deg,#00e5ff,#4361ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ns-stat-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px}
+.ns-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+.ns-badge{background:rgba(26,58,92,0.05);border:1.5px solid rgba(26,58,92,0.12);border-radius:100px;padding:5px 16px;font-size:10.5px;color:var(--muted);transition:all 0.3s}
+[data-theme="dark"] .ns-badge{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.09)}
+
+/* ══ BANK CARDS ══ */
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.bank-card{text-align:center;padding:24px 16px;cursor:default}
+.bank-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;border:1.5px solid var(--border2);background:var(--surface2);transition:all 0.3s}
+.bank-ticker{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;margin-bottom:4px}
+.bank-fullname{font-size:9px;color:var(--dim);margin-bottom:12px;line-height:1.4}
+.bank-invest{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;margin-bottom:6px}
+.bank-yield-bar{height:3px;border-radius:3px;margin:8px 0 5px;opacity:0.6}
+.bank-yield-txt{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);line-height:1.4}
+.bank-div-txt{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.4}
+.bank-div-txt strong{font-weight:600}
+.bank-details{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.bank-detail-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(0,0,0,0.04)}
+[data-theme="dark"] .bank-detail-row{border-bottom-color:rgba(255,255,255,0.04)}
+.bank-detail-row:last-child{border-bottom:none}
+.bdr-label{font-family:'DM Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:1px}
+.bdr-val{font-family:'DM Mono',monospace;font-size:8px;font-weight:500}
+.b-bca .bank-icon{background:rgba(0,120,212,0.06);border-color:rgba(0,120,212,0.2)}
+.b-bca .bank-ticker,.b-bca .bank-invest{color:var(--bca-blue)}
+.b-bca .bank-yield-bar{background:linear-gradient(90deg,var(--bca-blue),#7df9ff)}
+.b-bca{border-top:3px solid var(--bca-blue)}
+.b-bca .bdr-val{color:var(--bca-blue)}
+.b-bni .bank-icon{background:rgba(232,119,34,0.06);border-color:rgba(232,119,34,0.2)}
+.b-bni .bank-ticker,.b-bni .bank-invest{color:var(--bni-orange)}
+.b-bni .bank-yield-bar{background:linear-gradient(90deg,var(--bni-orange),#FFD700)}
+.b-bni{border-top:3px solid var(--bni-orange)}
+.b-bni .bdr-val{color:var(--bni-orange)}
+.b-bri .bank-icon{background:rgba(0,160,198,0.06);border-color:rgba(0,160,198,0.2)}
+.b-bri .bank-ticker,.b-bri .bank-invest{color:var(--bri-blue)}
+.b-bri .bank-yield-bar{background:linear-gradient(90deg,var(--bri-blue),#00e5ff)}
+.b-bri{border-top:3px solid var(--bri-blue)}
+.b-bri .bdr-val{color:var(--bri-blue)}
+.b-mandiri .bank-icon{background:rgba(200,144,10,0.06);border-color:rgba(200,144,10,0.2)}
+.b-mandiri .bank-ticker,.b-mandiri .bank-invest{color:var(--mandiri-yellow)}
+.b-mandiri .bank-yield-bar{background:linear-gradient(90deg,var(--mandiri-yellow),#ffe57a)}
+.b-mandiri{border-top:3px solid var(--mandiri-yellow)}
+.b-mandiri .bdr-val{color:var(--mandiri-yellow)}
+
+/* ══ DIV ══ */
+.div-mega-total{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,46px);font-weight:900;color:var(--ink-green);transition:color 0.3s}
+[data-theme="dark"] .div-mega-total{background:linear-gradient(135deg,#00ff87,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.div-mega-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);margin-top:3px;line-height:1.5}
+.div-breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.div-box{background:var(--surface2);border:1.5px solid var(--border2);border-radius:14px;padding:16px 10px;text-align:center;transition:all 0.2s;box-shadow:var(--shadow-sm)}
+.div-box:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.div-box-period{font-family:'DM Mono',monospace;font-size:8px;color:var(--accent-green);opacity:0.8;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px}
+.div-box-val{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,19px);font-weight:800;color:var(--ink-blue)}
+.div-box-note{font-size:9px;color:var(--dim);margin-top:5px;line-height:1.5}
+
+/* ══ ALLOC ══ */
+.alloc-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.alloc-card{padding:28px 24px}
+.alloc-pct{font-family:'Playfair Display',serif;font-size:60px;font-weight:900;line-height:1;margin:10px 0 6px}
+.alloc-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.alloc-amount{font-family:'DM Mono',monospace;font-size:11px;opacity:0.6;margin-bottom:14px}
+.alloc-list{list-style:none}
+.alloc-list li{font-size:10.5px;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;line-height:1.4}
+.alloc-list li:last-child{border-bottom:none}
+.alloc-list li::before{content:'▸';font-size:8px;opacity:0.4;flex-shrink:0}
+.a-reinvest .alloc-pct{color:var(--accent-teal)}
+.a-reinvest{border-top:3px solid var(--accent-teal)}
+.a-yayasan .alloc-pct{color:var(--accent-amber)}
+.a-yayasan{border-top:3px solid var(--accent-amber)}
+.a-gaji .alloc-pct{color:var(--accent-green)}
+.a-gaji{border-top:3px solid var(--accent-green)}
+.prog-wrap{margin-top:14px}
+.prog-track{height:5px;background:var(--surface3);border-radius:5px;overflow:hidden}
+.prog-fill{height:100%;border-radius:5px}
+
+/* ══ CRYPTO ══ */
+.crypto-portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.crypto-asset-card{background:var(--surface2);border:1.5px solid var(--border2);border-radius:16px;padding:18px 16px;transition:all 0.2s;box-shadow:var(--shadow-sm)}
+.crypto-asset-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.crypto-coin-icon{font-size:28px;display:block;margin-bottom:10px}
+.crypto-coin-name{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:2px;margin-bottom:4px}
+.crypto-coin-amount{font-family:'Playfair Display',serif;font-size:16px;font-weight:800;margin:6px 0 4px}
+.crypto-coin-note{font-size:9px;color:var(--dim);line-height:1.5}
+.crypto-strategy-tag{display:inline-flex;align-items:center;gap:4px;background:var(--surface3);border:1px solid var(--border2);border-radius:100px;padding:3px 10px;margin-top:8px;font-family:'DM Mono',monospace;font-size:8px;color:var(--muted)}
+
+/* ══ SECTOR GRID ══ */
+.sector-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
+.sector-box{background:var(--surface2);border:1.5px solid var(--border2);border-radius:14px;padding:14px 10px;text-align:center;transition:all 0.2s;box-shadow:var(--shadow-sm)}
+.sector-box:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.sector-icon2{font-size:20px;display:block;margin-bottom:6px}
+.sector-name2{font-family:'DM Mono',monospace;font-size:8px;font-weight:500;color:var(--ink-blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.sector-stocks{font-size:9px;color:var(--dim);line-height:1.8}
+.crypto-box{background:rgba(247,147,26,0.05);border-color:rgba(247,147,26,0.25)}
+.crypto-box .sector-name2{color:var(--btc)}
+
+/* ══ TIMELINE ══ */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;margin-top:22px}
+.timeline::before{content:'';position:absolute;top:28px;left:calc(12.5%);right:calc(12.5%);height:2px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-amber));z-index:0}
+.tl-item{text-align:center;position:relative;z-index:1}
+.tl-year{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:var(--accent-gold);border:3px solid var(--surface);margin:0 auto 10px;box-shadow:0 0 0 2px var(--accent-gold)}
+.tl-val{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,20px);font-weight:800;color:var(--ink-blue);margin-bottom:3px}
+.tl-div{font-family:'DM Mono',monospace;font-size:8px;color:var(--dim);margin-bottom:5px;letter-spacing:1px}
+.tl-growth{font-size:9px;color:var(--muted);line-height:1.4}
+
+/* ══ LEGACY ══ */
+.legacy{text-align:center;margin-top:24px;padding:30px;background:linear-gradient(135deg,rgba(26,58,92,0.05),rgba(212,160,23,0.07));border-radius:16px;border:1.5px solid rgba(212,160,23,0.25)}
+.legacy-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.legacy-val{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:var(--ink-blue);margin-bottom:8px}
+.legacy-sub{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:12px}
+.legacy-compare{font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-teal);letter-spacing:1px;opacity:0.8}
+
+/* ══ CHART CONTAINER ══ */
+.chart-wrap{position:relative;width:100%;padding:0}
+.chart-wrap canvas{max-height:320px}
+
+/* ══ RISK MATRIX ══ */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.risk-item{background:var(--surface2);border:1.5px solid var(--border2);border-radius:14px;padding:16px;transition:all 0.2s;box-shadow:var(--shadow-sm)}
+.risk-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.risk-level{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.risk-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:800;margin-bottom:6px;color:var(--ink-blue)}
+.risk-desc{font-size:10px;color:var(--muted);line-height:1.6}
+.risk-bar-wrap{margin-top:10px}
+.risk-bar{height:4px;border-radius:4px;margin-top:4px}
+
+/* ══ MILESTONE ══ */
+.milestone-list{display:flex;flex-direction:column;gap:0}
+.ms-item{display:grid;grid-template-columns:120px 1fr;gap:0;position:relative}
+.ms-item:not(:last-child) .ms-body{border-left:2px solid var(--border2);margin-left:19px;padding-bottom:24px}
+.ms-date-col{text-align:right;padding-right:20px;padding-top:2px}
+.ms-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;line-height:1.4}
+.ms-body{padding-left:28px;padding-bottom:8px;position:relative}
+.ms-dot{position:absolute;left:-7px;top:4px;width:14px;height:14px;border-radius:50%;border:2.5px solid var(--surface);box-shadow:0 0 0 2px currentColor}
+.ms-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:var(--ink-blue);margin-bottom:4px}
+.ms-desc{font-size:10.5px;color:var(--muted);line-height:1.6}
+.ms-tag{display:inline-flex;align-items:center;gap:4px;border-radius:100px;padding:2px 10px;font-family:'DM Mono',monospace;font-size:8px;margin-top:6px;border:1px solid transparent}
+
+/* ══ ANIMATIONS ══ */
+.fade-up{opacity:0;transform:translateY(24px);animation:fadeUp 0.68s cubic-bezier(.16,1,.3,1) forwards}
+.f0{animation-delay:0s}.f1{animation-delay:0.08s}.f2{animation-delay:0.16s}.f3{animation-delay:0.24s}
+.f4{animation-delay:0.32s}.f5{animation-delay:0.40s}.f6{animation-delay:0.48s}.f7{animation-delay:0.56s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ══ FOOTER ══ */
+.footer{text-align:center;margin-top:52px;padding:22px;font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;opacity:0.6;line-height:1.8;border-top:1px solid var(--border)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:780px){
+  .four-col{grid-template-columns:repeat(2,1fr)}
+  .alloc-row{grid-template-columns:1fr}
+  .div-breakdown{grid-template-columns:repeat(2,1fr)}
+  .sector-grid{grid-template-columns:repeat(3,1fr)}
+  .timeline{grid-template-columns:repeat(2,1fr)}
+  .timeline::before{display:none}
+  .ns-stat-row{grid-template-columns:repeat(2,1fr)}
+  .crypto-portfolio-grid{grid-template-columns:repeat(2,1fr)}
+  .risk-grid{grid-template-columns:1fr}
+  .ms-item{grid-template-columns:90px 1fr}
+}
+@media(max-width:520px){
+  .four-col{grid-template-columns:1fr}
+  .sector-grid{grid-template-columns:repeat(2,1fr)}
+  .crypto-portfolio-grid{grid-template-columns:1fr}
+  .div-breakdown{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr}
+  .wrap{padding:32px 16px 80px}
+  .card{padding:20px 18px}
+  .alloc-pct{font-size:48px}
+  .ms-item{grid-template-columns:1fr}
+  .ms-date-col{text-align:left;padding-right:0;padding-bottom:4px}
+}
+@supports(padding:env(safe-area-inset-bottom)){
+  .wrap{padding-bottom:calc(100px + env(safe-area-inset-bottom))}
+}
+</style>
+</head>
+<body>
+
+<!-- BG EFFECTS -->
+<div class="dark-orbs">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</div>
+<div class="light-shapes">
+  <div class="bs bs1"></div><div class="bs bs2"></div><div class="bs bs3"></div>
+</div>
+
+<!-- TOGGLE -->
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+  <div class="toggle-thumb" id="toggleThumb">☀️</div>
+</button>
+
+<div class="wrap">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero fade-up f0">
+    <div class="hero-eyebrow"><span class="dot"></span>Live Wealth Blueprint · 17 Agustus 2025</div>
+    <h1>PT Northstar<br><em>Group</em></h1>
+    <p class="hero-desc">Pure Dividend Holding Company · Dikendalikan penuh oleh <strong>Bara Sativa</strong><br>Strategi compounding jangka panjang — <em>bukan meniru siapapun, ini murni visi kami</em></p>
+    <div class="hero-chips">
+      <span class="chip">🏛 Holding Non-Operasional</span>
+      <span class="chip">💳 BCA Solitaire</span>
+      <span class="chip">🔒 Virtual Office</span>
+      <span class="chip">⚖️ Legal Protected</span>
+      <span class="chip">📋 myBCA Bisnis</span>
+      <span class="chip">₿ Crypto Reserve</span>
+      <span class="chip">🌏 Multi-Aset</span>
+    </div>
+  </div>
+
+  <!-- ══ 01 HOLDING ══ -->
+  <div class="section-label fade-up f1"><span>01 · Holding Utama</span></div>
+  <div class="card ns-hero t-teal fade-up f1">
+    <div class="pill" style="background:rgba(13,110,110,0.08);color:var(--ink-teal);border-color:rgba(13,110,110,0.15)">🏛 Entitas Induk</div>
+    <div class="ns-logo">PT Northstar Group</div>
+    <div class="ns-tagline">Pure Investment Holding · Dividend & Crypto Focused · Est. 17 Agustus 2025</div>
+    <div class="ns-stat-row">
+      <div class="ns-stat"><div class="ns-stat-val">Rp 100 T</div><div class="ns-stat-lbl">Investasi Saham</div></div>
+      <div class="ns-stat"><div class="ns-stat-val">4 Bank</div><div class="ns-stat-lbl">Portofolio</div></div>
+      <div class="ns-stat"><div class="ns-stat-val">75K ₿</div><div class="ns-stat-lbl">BTC Reserve</div></div>
+      <div class="ns-stat"><div class="ns-stat-val">Rp 3,38T</div><div class="ns-stat-lbl">Dividen/Tahun</div></div>
+    </div>
+    <div class="ns-badges">
+      <span class="ns-badge">👑 Direktur Utama — Bara Sativa</span>
+      <span class="ns-badge">🕌 Yayasan Al-Baraq</span>
+      <span class="ns-badge">₿ 75.000 BTC Cold Storage</span>
+      <span class="ns-badge">🔒 BCA Solitaire</span>
+      <span class="ns-badge">📊 Terdaftar KSEI</span>
+      <span class="ns-badge">🌐 Multi-Chain Crypto</span>
+    </div>
+  </div>
+
+  <div class="flow-conn fade-up f2"><div class="fc-line"></div><div class="fc-label">Aset Milik PT Northstar</div><div class="fc-arrowhead" style="border-top:10px solid var(--accent-teal)"></div></div>
+
+  <!-- ══ 02 KAS ══ -->
+  <div class="section-label fade-up f2"><span>02 · Kas & Likuiditas PT</span></div>
+  <div class="card t-purple fade-up f2" style="background:linear-gradient(145deg,rgba(74,42,110,0.04),rgba(37,99,235,0.03))">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center">
+      <div>
+        <div class="pill" style="background:rgba(74,42,110,0.08);color:var(--ink-purple);border-color:rgba(74,42,110,0.15)">💰 Kas Cadangan PT</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,50px);font-weight:900;color:var(--ink-purple);line-height:1;margin-bottom:8px">Rp 178 M</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;line-height:1.6">TABUNGAN NGENDAP<br>TIDAK DIINVESTASIKAN · HANYA KAS PT</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="div-box"><div class="div-box-period" style="color:var(--ink-purple)">Fungsi</div><div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:800;color:var(--ink-blue)">Dana Darurat</div><div class="div-box-note">Likuiditas 6 bulan ops</div></div>
+        <div class="div-box"><div class="div-box-period" style="color:var(--ink-purple)">Ketahanan</div><div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:800;color:var(--ink-blue)">Selamanya</div><div class="div-box-note">@ Rp 20Jt/hari operasional</div></div>
+        <div class="div-box"><div class="div-box-period" style="color:var(--ink-purple)">Rekening</div><div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:800;color:var(--ink-blue)">Solitaire</div><div class="div-box-note">BCA Tahapan Gold</div></div>
+        <div class="div-box"><div class="div-box-period" style="color:var(--ink-purple)">Distribusi</div><div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:800;color:var(--ink-blue)">Rp 50Jt</div><div class="div-box-note">Per hari ke pribadi</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-conn fade-up f2"><div class="fc-line"></div><div class="fc-label">Cadangan Kripto Multi-Aset</div><div class="fc-arrowhead" style="border-top:10px solid var(--btc)"></div></div>
+
+  <!-- ══ 02B CRYPTO ══ -->
+  <div class="section-label fade-up f2"><span>02B · Portofolio Cryptocurrency</span></div>
+  <div class="card t-btc fade-up f2" style="background:linear-gradient(145deg,rgba(247,147,26,0.05),rgba(255,99,32,0.03))">
+    <div class="pill" style="background:rgba(247,147,26,0.1);color:var(--btc);border-color:rgba(247,147,26,0.2)">₿ Crypto Reserve — Cold Storage</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;margin-bottom:20px">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--btc);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">FLAGSHIP HOLDING</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,50px);font-weight:900;color:var(--btc);line-height:1;margin-bottom:8px">75.000 BTC</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;line-height:1.7">BITCOIN · COLD STORAGE · MULTI-SIG<br>NEVER SELL · WARISAN ABADI</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="div-box" style="border-color:rgba(247,147,26,0.2)"><div class="div-box-period" style="color:var(--btc)">Jumlah</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:var(--btc)">75.000 ₿</div><div class="div-box-note">Total kepemilikan</div></div>
+        <div class="div-box" style="border-color:rgba(247,147,26,0.2)"><div class="div-box-period" style="color:var(--btc)">Supply %</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;color:var(--ink-blue)">~3.57%</div><div class="div-box-note">dari 21 juta BTC</div></div>
+        <div class="div-box" style="border-color:rgba(247,147,26,0.2)"><div class="div-box-period" style="color:var(--btc)">Storage</div><div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:var(--ink-blue)">Cold Wallet</div><div class="div-box-note">Ledger + Trezor 3/5</div></div>
+        <div class="div-box" style="border-color:rgba(247,147,26,0.2)"><div class="div-box-period" style="color:var(--btc)">Strategi</div><div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:var(--ink-blue)">∞ HODL</div><div class="div-box-note">Tidak pernah dijual</div></div>
+      </div>
+    </div>
+    <div class="crypto-portfolio-grid">
+      <div class="crypto-asset-card" style="border-top:2px solid #627eea">
+        <span class="crypto-coin-icon">⟠</span>
+        <div class="crypto-coin-name" style="color:#627eea">ETHEREUM</div>
+        <div class="crypto-coin-amount" style="color:#3d5bbf">10.000 ETH</div>
+        <div class="crypto-coin-note">Smart contract · Staking ~4%/thn</div>
+        <div class="crypto-strategy-tag">🔒 Staked + Cold</div>
+      </div>
+      <div class="crypto-asset-card" style="border-top:2px solid #9945ff">
+        <span class="crypto-coin-icon">◎</span>
+        <div class="crypto-coin-name" style="color:#9945ff">SOLANA</div>
+        <div class="crypto-coin-amount" style="color:#7733cc">250.000 SOL</div>
+        <div class="crypto-coin-note">Validator node · Yield ~7%/thn</div>
+        <div class="crypto-strategy-tag">⚡ Validator Node</div>
+      </div>
+      <div class="crypto-asset-card" style="border-top:2px solid var(--avax)">
+        <span class="crypto-coin-icon">🔷</span>
+        <div class="crypto-coin-name" style="color:var(--avax)">AVALANCHE</div>
+        <div class="crypto-coin-amount" style="color:#009977">500.000 AVAX</div>
+        <div class="crypto-coin-note">Subnet infra · Yield ~8%/thn</div>
+        <div class="crypto-strategy-tag">🏗️ Subnet Infra</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-conn fade-up f2"><div class="fc-line"></div><div class="fc-label">Investasi ke 4 Bank Blue Chip</div><div class="fc-arrowhead" style="border-top:10px solid var(--accent-blue)"></div></div>
+
+  <!-- ══ 03 BANKS ══ -->
+  <div class="section-label fade-up f2"><span>03 · Portofolio Saham Perbankan</span></div>
+  <div class="four-col fade-up f2">
+    <div class="card bank-card b-bca">
+      <div class="bank-icon">🏦</div><div class="bank-ticker">BBCA</div>
+      <div class="bank-fullname">Bank Central Asia</div>
+      <div class="bank-invest">Rp 25 T</div>
+      <div class="bank-yield-bar" style="background:linear-gradient(90deg,var(--bca-blue),#7df9ff)"></div>
+      <div class="bank-yield-txt">Yield ~3.5% p.a.</div>
+      <div class="bank-div-txt">Dividen ± <strong>Rp 875 M</strong>/thn</div>
+      <div class="bank-details">
+        <div class="bank-detail-row"><span class="bdr-label">Saham</span><span class="bdr-val">~1.25 M lembar</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Harga Est.</span><span class="bdr-val">Rp 20.000/lbr</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Div/Saham</span><span class="bdr-val">Rp 700/lbr</span></div>
+      </div>
+    </div>
+    <div class="card bank-card b-bni">
+      <div class="bank-icon">🏦</div><div class="bank-ticker">BBNI</div>
+      <div class="bank-fullname">Bank Negara Indonesia</div>
+      <div class="bank-invest">Rp 25 T</div>
+      <div class="bank-yield-bar" style="background:linear-gradient(90deg,var(--bni-orange),#FFD700)"></div>
+      <div class="bank-yield-txt">Yield ~3.2% p.a.</div>
+      <div class="bank-div-txt">Dividen ± <strong>Rp 800 M</strong>/thn</div>
+      <div class="bank-details">
+        <div class="bank-detail-row"><span class="bdr-label">Saham</span><span class="bdr-val">~2.78 M lembar</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Harga Est.</span><span class="bdr-val">Rp 9.000/lbr</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Div/Saham</span><span class="bdr-val">Rp 288/lbr</span></div>
+      </div>
+    </div>
+    <div class="card bank-card b-bri">
+      <div class="bank-icon">🏦</div><div class="bank-ticker">BBRI</div>
+      <div class="bank-fullname">Bank Rakyat Indonesia</div>
+      <div class="bank-invest">Rp 25 T</div>
+      <div class="bank-yield-bar" style="background:linear-gradient(90deg,var(--bri-blue),#00e5ff)"></div>
+      <div class="bank-yield-txt">Yield ~4.5% p.a.</div>
+      <div class="bank-div-txt">Dividen ± <strong>Rp 1,125 T</strong>/thn</div>
+      <div class="bank-details">
+        <div class="bank-detail-row"><span class="bdr-label">Saham</span><span class="bdr-val">~5.56 M lembar</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Harga Est.</span><span class="bdr-val">Rp 4.500/lbr</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Div/Saham</span><span class="bdr-val">Rp 202/lbr</span></div>
+      </div>
+    </div>
+    <div class="card bank-card b-mandiri">
+      <div class="bank-icon">🏦</div><div class="bank-ticker">BMRI</div>
+      <div class="bank-fullname">Bank Mandiri</div>
+      <div class="bank-invest">Rp 25 T</div>
+      <div class="bank-yield-bar" style="background:linear-gradient(90deg,var(--mandiri-yellow),#ffe57a)"></div>
+      <div class="bank-yield-txt">Yield ~3.8% p.a.</div>
+      <div class="bank-div-txt">Dividen ± <strong>Rp 950 M</strong>/thn</div>
+      <div class="bank-details">
+        <div class="bank-detail-row"><span class="bdr-label">Saham</span><span class="bdr-val">~4.17 M lembar</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Harga Est.</span><span class="bdr-val">Rp 6.000/lbr</span></div>
+        <div class="bank-detail-row"><span class="bdr-label">Div/Saham</span><span class="bdr-val">Rp 228/lbr</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-conn fade-up f3"><div class="fc-line"></div><div class="fc-label">Total Dividen Masuk ke PT</div><div class="fc-arrowhead" style="border-top:10px solid var(--accent-green)"></div></div>
+
+  <!-- ══ 04 DIVIDEN ══ -->
+  <div class="section-label fade-up f3"><span>04 · Total Dividen Bersih</span></div>
+  <div class="card t-green fade-up f3" style="background:linear-gradient(145deg,rgba(22,163,74,0.04),rgba(13,110,110,0.03))">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:18px">
+      <div>
+        <div class="pill" style="background:rgba(22,163,74,0.08);color:var(--ink-green);border-color:rgba(22,163,74,0.15)">💵 Passive Income Tahunan</div>
+        <div class="div-mega-total">Rp 3,375 T</div>
+        <div class="div-mega-sub">TOTAL DIVIDEN BERSIH/TAHUN · SETELAH PAJAK 10%</div>
+      </div>
+    </div>
+    <div class="div-breakdown">
+      <div class="div-box"><div class="div-box-period">Per Tahun</div><div class="div-box-val">Rp 3,375 T</div><div class="div-box-note">Bersih setelah pajak</div></div>
+      <div class="div-box"><div class="div-box-period">Per Bulan</div><div class="div-box-val">Rp 281 M</div><div class="div-box-note">Stabil tanpa fluktuasi</div></div>
+      <div class="div-box"><div class="div-box-period">Per Hari</div><div class="div-box-val">Rp 9,25 M</div><div class="div-box-note">Sambil tidur cuan 😏</div></div>
+      <div class="div-box"><div class="div-box-period">Per Jam</div><div class="div-box-val">Rp 385 Jt</div><div class="div-box-note">Every hour. 🚀</div></div>
+    </div>
+  </div>
+
+  <!-- ══ 04B GRAFIK DIVIDEN ══ -->
+  <div class="section-label fade-up f3"><span>04B · Grafik Pertumbuhan Snowball</span></div>
+  <div class="card t-blue fade-up f3" style="padding:28px">
+    <div class="pill" style="background:rgba(37,99,235,0.08);color:var(--accent-blue);border-color:rgba(37,99,235,0.15)">📊 Proyeksi Interaktif — Dividen Tahunan (Rp Triliun)</div>
+    <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+      <button onclick="setChartType('bar')" id="btn-bar" class="chart-btn active-btn" style="font-family:'DM Mono',monospace;font-size:9px;padding:5px 14px;border-radius:100px;border:1.5px solid var(--accent-blue);background:rgba(37,99,235,0.1);color:var(--accent-blue);cursor:pointer;letter-spacing:1px;transition:all 0.2s">Bar Chart</button>
+      <button onclick="setChartType('line')" id="btn-line" class="chart-btn" style="font-family:'DM Mono',monospace;font-size:9px;padding:5px 14px;border-radius:100px;border:1.5px solid var(--border2);background:var(--surface2);color:var(--muted);cursor:pointer;letter-spacing:1px;transition:all 0.2s">Line Chart</button>
+      <button onclick="setChartType('pie')" id="btn-pie" class="chart-btn" style="font-family:'DM Mono',monospace;font-size:9px;padding:5px 14px;border-radius:100px;border:1.5px solid var(--border2);background:var(--surface2);color:var(--muted);cursor:pointer;letter-spacing:1px;transition:all 0.2s">Pie (Alokasi)</button>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="mainChart"></canvas>
+    </div>
+    <div id="chart-note" style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;text-align:center"></div>
+  </div>
+
+  <div class="flow-conn fade-up f4"><div class="fc-line"></div><div class="fc-label">Dibagi 4 Alokasi Utama</div><div class="fc-arrowhead" style="border-top:10px solid var(--accent-amber)"></div></div>
+
+  <!-- ══ 05 ALOKASI ══ -->
+  <div class="section-label fade-up f4"><span>05 · Alokasi Dividen</span></div>
+  <div class="alloc-row fade-up f4">
+    <div class="card alloc-card a-reinvest">
+      <div class="pill" style="background:rgba(13,110,110,0.08);color:var(--ink-teal);border-color:rgba(13,110,110,0.15)">🔄 Reinvestasi</div>
+      <div class="alloc-pct">70%</div>
+      <div class="alloc-name">Kembali ke PT Northstar</div>
+      <div class="alloc-amount">Rp 2,36 T / tahun</div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:70%;background:linear-gradient(90deg,var(--accent-teal),var(--accent-blue))"></div></div></div>
+      <ul class="alloc-list" style="margin-top:16px">
+        <li>Beli saham perusahaan baru lintas sektor</li>
+        <li>Ekspansi ke 5+ sektor strategis nasional</li>
+        <li>Tambah crypto portfolio (BTC, ETH, SOL)</li>
+        <li>Compounding effect ♾️ aset berlipat ganda</li>
+        <li>Tanpa kerja keras — pasif total</li>
+        <li>Target 20+ perusahaan dalam 10 tahun</li>
+      </ul>
+    </div>
+    <div class="card alloc-card a-yayasan">
+      <div class="pill" style="background:rgba(200,106,0,0.08);color:var(--ink-amber);border-color:rgba(200,106,0,0.15)">🕌 Sosial</div>
+      <div class="alloc-pct">25%</div>
+      <div class="alloc-name">Yayasan Al-Baraq</div>
+      <div class="alloc-amount">Rp 843 M / tahun</div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:25%;background:linear-gradient(90deg,var(--accent-amber),var(--accent-gold))"></div></div></div>
+      <ul class="alloc-list" style="margin-top:16px">
+        <li>Milik penuh Bara Sativa</li>
+        <li>Rp 70,2 M/bulan operasional yayasan</li>
+        <li>Ribuan anak yatim dan dhuafa terbantu</li>
+        <li>Beasiswa pendidikan S1–S3 penuh</li>
+        <li>Pemberdayaan ekonomi pesantren</li>
+        <li>Kurangi pajak PT secara legal ✓</li>
+      </ul>
+    </div>
+    <div class="card alloc-card a-gaji">
+      <div class="pill" style="background:rgba(22,163,74,0.08);color:var(--ink-green);border-color:rgba(22,163,74,0.15)">👤 Direktur</div>
+      <div class="alloc-pct">1%</div>
+      <div class="alloc-name">Bara Sativa</div>
+      <div class="alloc-amount">Rp 33,75 M / tahun</div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:1%;background:linear-gradient(90deg,var(--accent-green),var(--accent-teal));min-width:10px"></div></div></div>
+      <ul class="alloc-list" style="margin-top:16px">
+        <li>Gaji resmi direktur utama PT</li>
+        <li>Rp 2,8 M/bulan gaji bersih resmi</li>
+        <li>PPh Pasal 21 pribadi efisien</li>
+        <li>+ Lifestyle dari distribusi reinvestasi</li>
+        <li>Rp 50Jt/hari dari kas PT ke pribadi</li>
+        <li>Financial freedom total — no stress</li>
+      </ul>
+    </div>
+    <div class="card alloc-card" style="border-top:3px solid var(--ink-purple)">
+      <div class="pill" style="background:rgba(74,42,110,0.08);color:var(--ink-purple);border-color:rgba(74,42,110,0.15)">🤖 Operasional</div>
+      <div class="alloc-pct" style="color:var(--ink-purple)">4%</div>
+      <div class="alloc-name">Pemeliharaan & Teknologi</div>
+      <div class="alloc-amount">Rp 135 M / tahun</div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:4%;background:linear-gradient(90deg,var(--ink-purple),#8b5cf6);min-width:10px"></div></div></div>
+      <ul class="alloc-list" style="margin-top:16px">
+        <li>Infrastruktur AI & cloud perusahaan</li>
+        <li>Pemeliharaan sistem otomatis 24/7</li>
+        <li>Lisensi tools premium & SaaS</li>
+        <li>Server, hosting & cloud computing</li>
+        <li>Update, scaling & security teknologi 🤖</li>
+        <li>Tim virtual & konsultan profesional</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow-conn fade-up f5"><div class="fc-line"></div><div class="fc-label">70% → Ekspansi Portofolio</div><div class="fc-arrowhead" style="border-top:10px solid var(--accent-gold)"></div></div>
+
+  <!-- ══ 06 EKSPANSI ══ -->
+  <div class="section-label fade-up f5"><span>06 · Ekspansi Portofolio</span></div>
+  <div class="card t-gold fade-up f5">
+    <div class="pill" style="background:rgba(212,160,23,0.1);color:var(--ink-gold);border-color:rgba(212,160,23,0.2)">🚀 Target Saham & Aset Baru</div>
+    <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;line-height:1.6">Dividen reinvestasi dibelikan saham lintas sektor + aset kripto — snowball effect makin besar tiap tahun ♾️</div>
+    <div class="sector-grid">
+      <div class="sector-box"><span class="sector-icon2">⚡</span><div class="sector-name2">Energi</div><div class="sector-stocks">ADRO · PGAS<br>Pertamina · MEDC</div></div>
+      <div class="sector-box"><span class="sector-icon2">📡</span><div class="sector-name2">Telko</div><div class="sector-stocks">Telkom · ISAT<br>EXCL · MTEL</div></div>
+      <div class="sector-box"><span class="sector-icon2">🛒</span><div class="sector-name2">Consumer</div><div class="sector-stocks">Unilever · Indofood<br>ICBP · AMRT</div></div>
+      <div class="sector-box"><span class="sector-icon2">🏥</span><div class="sector-name2">Kesehatan</div><div class="sector-stocks">Siloam · Kalbe<br>Mitra Kel. · HEAL</div></div>
+      <div class="sector-box"><span class="sector-icon2">🏗️</span><div class="sector-name2">Infrastruktur</div><div class="sector-stocks">Jasa Marga · WIKA<br>WSKT · PTPP</div></div>
+      <div class="sector-box crypto-box"><span class="sector-icon2">₿</span><div class="sector-name2">Crypto</div><div class="sector-stocks">Bitcoin · Ethereum<br>Solana · Avalanche</div></div>
+      <div class="sector-box"><span class="sector-icon2">🏠</span><div class="sector-name2">Properti</div><div class="sector-stocks">BSDE · CTRA<br>SMRA · PWON</div></div>
+      <div class="sector-box"><span class="sector-icon2">💻</span><div class="sector-name2">Teknologi</div><div class="sector-stocks">GoTo · BUKA<br>EMTK · KOPI</div></div>
+      <div class="sector-box"><span class="sector-icon2">✈️</span><div class="sector-name2">Transportasi</div><div class="sector-stocks">Garuda · Blue Bird<br>GIAA · BIRD</div></div>
+      <div class="sector-box"><span class="sector-icon2">⛏️</span><div class="sector-name2">Pertambangan</div><div class="sector-stocks">ANTM · PTBA<br>TINS · Vale Indo</div></div>
+    </div>
+  </div>
+
+  <!-- ══ NEW: RISK MANAGEMENT ══ -->
+  <div class="section-label fade-up f5"><span>06B · Risk Management</span></div>
+  <div class="card t-amber fade-up f5">
+    <div class="pill" style="background:rgba(224,120,32,0.1);color:var(--ink-amber);border-color:rgba(224,120,32,0.2)">🛡️ Strategi Mitigasi Risiko</div>
+    <div style="font-size:12.5px;color:var(--muted);margin-bottom:4px;line-height:1.6">Diversifikasi berlapis untuk melindungi kekayaan dari berbagai skenario risiko</div>
+    <div class="risk-grid">
+      <div class="risk-item">
+        <div class="risk-level" style="color:#16a34a">🟢 RENDAH</div>
+        <div class="risk-name">Risiko Likuiditas</div>
+        <div class="risk-desc">Kas Rp 178M + distribusi harian Rp 50Jt menjamin operasional berjalan tanpa hambatan selama 6+ bulan</div>
+        <div class="risk-bar-wrap"><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--dim)">Exposure</div><div class="risk-bar" style="width:20%;background:#16a34a"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level" style="color:#d97706">🟡 SEDANG</div>
+        <div class="risk-name">Risiko Pasar Saham</div>
+        <div class="risk-desc">Spread di 4 bank blue chip BUMN & swasta. Korelasi rendah antar bank. Yield dividen stabil meski harga saham fluktuatif</div>
+        <div class="risk-bar-wrap"><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--dim)">Exposure</div><div class="risk-bar" style="width:45%;background:#d97706"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level" style="color:#dc2626">🔴 TINGGI</div>
+        <div class="risk-name">Risiko Crypto Volatilitas</div>
+        <div class="risk-desc">BTC, ETH, SOL, AVAX sangat volatil. Dikelola dengan strategi HODL jangka panjang — tidak dijual saat crash</div>
+        <div class="risk-bar-wrap"><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--dim)">Exposure</div><div class="risk-bar" style="width:75%;background:#dc2626"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level" style="color:#16a34a">🟢 RENDAH</div>
+        <div class="risk-name">Risiko Regulasi</div>
+        <div class="risk-desc">Struktur PT holding legal di Indonesia. Terdaftar KSEI, laporan pajak transparan, Yayasan Al-Baraq sebagai buffer legal</div>
+        <div class="risk-bar-wrap"><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--dim)">Exposure</div><div class="risk-bar" style="width:15%;background:#16a34a"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level" style="color:#d97706">🟡 SEDANG</div>
+        <div class="risk-name">Risiko Inflasi</div>
+        <div class="risk-desc">Inflasi Indonesia ~3-4%/thn dilawan dengan: yield saham ~3.75%, crypto growth historis 40-60%/thn, reinvestasi 70%</div>
+        <div class="risk-bar-wrap"><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--dim)">Exposure</div><div class="risk-bar" style="width:35%;background:#d97706"></div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-level" style="color:#16a34a">🟢 RENDAH</div>
+        <div class="risk-name">Risiko Konsentrasi</div>
+        <div class="risk-desc">10 sektor saham + 4 crypto berbeda. Tidak bergantung satu industri. Ekspansi 2-3 sektor baru per 5 tahun</div>
+        <div class="risk-bar-wrap"><div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--dim)">Exposure</div><div class="risk-bar" style="width:20%;background:#16a34a"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-conn fade-up f6"><div class="fc-line"></div><div class="fc-label">Snowball Compounding Effect</div><div class="fc-arrowhead" style="border-top:10px solid var(--ink-blue)"></div></div>
+
+  <!-- ══ 07 PROYEKSI ══ -->
+  <div class="section-label fade-up f6"><span>07 · Proyeksi Pertumbuhan</span></div>
+  <div class="card t-blue fade-up f6" style="padding:32px;background:linear-gradient(145deg,rgba(26,58,92,0.04),rgba(212,160,23,0.04))">
+    <div class="pill" style="background:rgba(26,58,92,0.07);color:var(--ink-blue);border-color:rgba(26,58,92,0.15)">📈 Snowball Timeline — Dari 17 Agustus 2025</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">17 AGT 2025 · Thn 1</div><div class="tl-dot"></div>
+        <div class="tl-val">Rp 3,375 T</div><div class="tl-div">Dividen/tahun</div>
+        <div class="tl-growth">4 Bank + Crypto Reserve</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Tahun 5 · 2030</div><div class="tl-dot"></div>
+        <div class="tl-val">Rp 8–10 T</div><div class="tl-div">Dividen/tahun</div>
+        <div class="tl-growth">+5 sektor baru</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Tahun 10 · 2035</div><div class="tl-dot"></div>
+        <div class="tl-val">Rp 20–30 T</div><div class="tl-div">Dividen/tahun</div>
+        <div class="tl-growth">20+ perusahaan</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Tahun 20 · 2045 🏆</div>
+        <div class="tl-dot" style="background:var(--accent-gold);box-shadow:0 0 0 2px var(--accent-gold)"></div>
+        <div class="tl-val">Rp 100+ T</div><div class="tl-div">Dividen/tahun</div>
+        <div class="tl-growth">Legacy abadi · Gen-2</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+      <div style="background:rgba(26,58,92,0.04);border:1.5px solid rgba(26,58,92,0.1);border-radius:14px;padding:16px">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink-blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">ASUMSI PERTUMBUHAN</div>
+        <div style="font-size:10.5px;color:var(--muted);line-height:1.8">▸ Reinvestasi 70% dividen setiap tahun<br>▸ Rata-rata yield saham ~3.75% stabil<br>▸ Bitcoin tumbuh historis ~40-60%/tahun<br>▸ Ekspansi 2–3 sektor baru per 5 tahun<br>▸ Dividen di-compound tanpa penarikan<br>▸ Inflasi Indonesia ~3-4%/tahun</div>
+      </div>
+      <div style="background:rgba(22,163,74,0.04);border:1.5px solid rgba(22,163,74,0.1);border-radius:14px;padding:16px">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink-green);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">TARGET JANGKA PENDEK (2025–2027)</div>
+        <div style="font-size:10.5px;color:var(--muted);line-height:1.8">▸ Masuk sektor energi (ADRO, PGAS)<br>▸ Tambah ETH staking node aktif<br>▸ Ekspansi ke saham properti premium<br>▸ Buka rekening saham di 3 sekuritas<br>▸ Optimasi holding structure pajak<br>▸ Launch Yayasan Al-Baraq resmi</div>
+      </div>
+    </div>
+    <div class="legacy">
+      <div class="legacy-label">💰 Total Aset PT Northstar — Warisan Abadi Bara Sativa</div>
+      <div class="legacy-val">Rp 1.000+ Triliun</div>
+      <div class="legacy-sub">Warisan abadi untuk generasi Bara Sativa · Yayasan Al-Baraq terus berjalan selamanya<br><span style="opacity:0.6;font-size:11px">Bitcoin 75.000 BTC tersimpan aman · Tidak dijual · Warisan kripto digital abadi 🔐</span></div>
+      <div class="legacy-compare">🔮 PT Northstar Group — Visi Holding Mandiri Pertama Indonesia yang Menggabungkan Dividen Saham & Kripto</div>
+    </div>
+  </div>
+
+  <!-- ══ NEW: MILESTONE TIMELINE ══ -->
+  <div class="section-label fade-up f6"><span>08 · Milestone Roadmap</span></div>
+  <div class="card t-teal fade-up f6" style="padding:32px">
+    <div class="pill" style="background:rgba(13,110,110,0.08);color:var(--ink-teal);border-color:rgba(13,110,110,0.15)">🗓️ Langkah Konkret Menuju Rp 1.000 T</div>
+    <div class="milestone-list" style="margin-top:22px">
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">AGT 2025<br>Hari 1</div></div>
+        <div class="ms-body">
+          <div class="ms-dot" style="background:var(--accent-teal);color:var(--accent-teal)"></div>
+          <div class="ms-title">🏁 Pendirian PT Northstar Group</div>
+          <div class="ms-desc">Daftarkan PT di notaris, buka rekening myBCA Bisnis, setup virtual office. Investasi awal Rp 25T ke BBCA.</div>
+          <div class="ms-tag" style="background:rgba(13,110,110,0.08);color:var(--ink-teal);border-color:rgba(13,110,110,0.2)">✅ Fondasi Legal</div>
+        </div>
+      </div>
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">SEP 2025<br>Bulan 1</div></div>
+        <div class="ms-body">
+          <div class="ms-dot" style="background:var(--bca-blue);color:var(--bca-blue)"></div>
+          <div class="ms-title">🏦 Investasi 4 Bank Blue Chip</div>
+          <div class="ms-desc">Deploy Rp 100T ke BBCA, BBNI, BBRI, BMRI. Daftar BCA Solitaire. Setup auto-collect dividen ke rekening PT.</div>
+          <div class="ms-tag" style="background:rgba(0,120,212,0.08);color:var(--bca-blue);border-color:rgba(0,120,212,0.2)">💰 Rp 100T Deployed</div>
+        </div>
+      </div>
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">DES 2025<br>Bulan 4</div></div>
+        <div class="ms-body">
+          <div class="ms-dot" style="background:var(--btc);color:var(--btc)"></div>
+          <div class="ms-title">₿ Setup Crypto Cold Storage</div>
+          <div class="ms-desc">75.000 BTC masuk cold wallet multi-sig 3/5 (Ledger + Trezor). ETH di-stake, SOL & AVAX validator node aktif.</div>
+          <div class="ms-tag" style="background:rgba(247,147,26,0.1);color:var(--btc);border-color:rgba(247,147,26,0.25)">🔒 Cold Storage Secured</div>
+        </div>
+      </div>
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">AGT 2026<br>Tahun 1</div></div>
+        <div class="ms-body">
+          <div class="ms-dot" style="background:var(--accent-gold);color:var(--accent-gold)"></div>
+          <div class="ms-title">🕌 Launch Yayasan Al-Baraq</div>
+          <div class="ms-desc">Yayasan resmi beroperasi. Alokasi 25% dividen (Rp 843M/thn) mulai tersalurkan. Program beasiswa S1-S3 launched.</div>
+          <div class="ms-tag" style="background:rgba(212,160,23,0.1);color:var(--ink-gold);border-color:rgba(212,160,23,0.2)">🌟 Dampak Sosial Nyata</div>
+        </div>
+      </div>
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">2027<br>Tahun 2</div></div>
+        <div class="ms-body">
+          <div class="ms-dot" style="background:#16a34a;color:#16a34a"></div>
+          <div class="ms-title">⚡ Ekspansi Sektor Energi & Properti</div>
+          <div class="ms-desc">Beli ADRO, PGAS, BSDE, CTRA dari reinvestasi dividen. Buka 3 rekening sekuritas. Portofolio naik ke 8 saham.</div>
+          <div class="ms-tag" style="background:rgba(22,163,74,0.08);color:var(--ink-green);border-color:rgba(22,163,74,0.2)">📈 +4 Saham Baru</div>
+        </div>
+      </div>
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">2030<br>Tahun 5</div></div>
+        <div class="ms-body">
+          <div class="ms-dot" style="background:var(--ink-purple);color:var(--ink-purple)"></div>
+          <div class="ms-title">🚀 Dividen Tembus Rp 10 Triliun</div>
+          <div class="ms-desc">Portofolio 12+ perusahaan. BTC ~$500K/coin. Total dividen tahunan Rp 8-10T. Yayasan bantu 50.000+ jiwa/tahun.</div>
+          <div class="ms-tag" style="background:rgba(74,42,110,0.08);color:var(--ink-purple);border-color:rgba(74,42,110,0.2)">🏆 Milestone Besar</div>
+        </div>
+      </div>
+
+      <div class="ms-item">
+        <div class="ms-date-col"><div class="ms-date">2045<br>Tahun 20</div></div>
+        <div class="ms-body" style="padding-bottom:0">
+          <div class="ms-dot" style="background:var(--accent-gold);color:var(--accent-gold);width:18px;height:18px;left:-9px;top:2px"></div>
+          <div class="ms-title" style="font-size:18px">🏆 Legacy Abadi Bara Sativa</div>
+          <div class="ms-desc">Total aset Rp 1.000+ Triliun. Dividen Rp 100T+/tahun. Yayasan Al-Baraq mandiri selamanya. Generasi ke-2 mewarisi.</div>
+          <div class="ms-tag" style="background:rgba(212,160,23,0.12);color:var(--ink-gold);border-color:rgba(212,160,23,0.3)">♾️ Warisan Tak Terbatas</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer fade-up f7">
+    ⚡ LUCID DREAMS — PT NORTHSTAR GROUP · BARA SATIVA · YAYASAN AL-BARAQ<br>
+    Dibangun 17 Agustus 2025 · Simulasi ilustratif finansial<br>
+    Konsultasikan dengan RM BCA Solitaire, Konsultan Pajak & Legal Profesional · Bukan ajakan investasi
+  </div>
+
+</div>
+
+<script>
+// ══ THEME TOGGLE ══
+function toggleTheme(){
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('toggleThumb').textContent = isDark ? '☀️' : '🌙';
+  updateChart();
+}
+
+// ══ CHART ══
+let mainChart = null;
+let currentType = 'bar';
+
+const snowballData = {
+  labels: ['2025','2026','2027','2028','2029','2030','2032','2035','2040','2045'],
+  values: [3.375, 4.2, 5.1, 6.0, 7.0, 9.0, 13, 22, 55, 120]
+};
+
+const allocData = {
+  labels: ['Reinvestasi 70%', 'Yayasan Al-Baraq 25%', 'Operasional 4%', 'Gaji Direktur 1%'],
+  values: [70, 25, 4, 1],
+  colors: ['#0f9090','#e07820','#4a2a6e','#16a34a']
+};
+
+function getColors(){
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return {
+    text: dark ? 'rgba(238,238,255,0.55)' : 'rgba(26,22,18,0.6)',
+    grid: dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+    surface: dark ? '#0a0a16' : '#ffffff',
+    bar: dark ? ['#00e5ff','#4361ff','#9d4edd','#ff2d9b','#ffe135','#00ff87','#ff6320','#00d4aa','#ff2d9b','#00e5ff']
+               : ['#0f9090','#2563eb','#4a2a6e','#c96a00','#d4a017','#16a34a','#e07820','#00d4aa','#e87722','#1a3a5c']
+  };
+}
+
+function buildChart(type){
+  const ctx = document.getElementById('mainChart').getContext('2d');
+  const c = getColors();
+  if(mainChart){ mainChart.destroy(); mainChart = null; }
+
+  const notes = {
+    bar: '📊 Proyeksi dividen tahunan PT Northstar (Rp Triliun) — asumsi reinvestasi 70% + yield stabil',
+    line: '📈 Kurva pertumbuhan exponensial — efek compounding mulai terasa signifikan ab Tahun 5+',
+    pie: '🥧 Alokasi dividen tahunan Rp 3,375 Triliun ke 4 kategori utama'
+  };
+  document.getElementById('chart-note').textContent = notes[type];
+
+  if(type === 'pie'){
+    mainChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: allocData.labels,
+        datasets:[{data: allocData.values, backgroundColor: allocData.colors, borderWidth: 3, borderColor: c.surface, hoverOffset: 10}]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:true,
+        plugins:{
+          legend:{position:'bottom', labels:{color:c.text, font:{family:'DM Mono, monospace', size:11}, padding:16}},
+          tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed}%`}}
+        },
+        cutout:'60%'
+      }
+    });
+    return;
+  }
+
+  mainChart = new Chart(ctx, {
+    type: type === 'line' ? 'line' : 'bar',
+    data: {
+      labels: snowballData.labels,
+      datasets:[{
+        label:'Dividen (Rp T)',
+        data: snowballData.values,
+        backgroundColor: type==='bar' ? c.bar.map(col=>col+'88') : 'rgba(37,99,235,0.15)',
+        borderColor: type==='bar' ? c.bar : (document.documentElement.getAttribute('data-theme')==='dark' ? '#00e5ff' : '#1a3a5c'),
+        borderWidth: type==='bar' ? 0 : 2.5,
+        borderRadius: type==='bar' ? 8 : 0,
+        pointBackgroundColor: type==='line' ? (document.documentElement.getAttribute('data-theme')==='dark' ? '#00e5ff' : '#1a3a5c') : undefined,
+        pointRadius: type==='line' ? 5 : 0,
+        fill: type==='line',
+        tension: 0.4
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          callbacks:{label:ctx=>`Rp ${ctx.parsed.y.toFixed(1)} Triliun`},
+          titleFont:{family:'DM Mono, monospace'},bodyFont:{family:'DM Mono, monospace'}
+        }
+      },
+      scales:{
+        x:{ticks:{color:c.text,font:{family:'DM Mono, monospace',size:10}}, grid:{color:c.grid}},
+        y:{ticks:{color:c.text,font:{family:'DM Mono, monospace',size:10},callback:v=>`Rp ${v}T`}, grid:{color:c.grid}}
+      }
+    }
+  });
+}
+
+function setChartType(type){
+  currentType = type;
+  document.querySelectorAll('.chart-btn').forEach(b=>{
+    b.style.background = 'var(--surface2)';
+    b.style.borderColor = 'var(--border2)';
+    b.style.color = 'var(--muted)';
+  });
+  const active = document.getElementById('btn-'+type);
+  active.style.background = 'rgba(37,99,235,0.1)';
+  active.style.borderColor = 'var(--accent-blue)';
+  active.style.color = 'var(--accent-blue)';
+  buildChart(type);
+}
+
+function updateChart(){ buildChart(currentType); }
+
+// init
+window.addEventListener('load', ()=>{ buildChart('bar'); });
+</script>
+</body>
+</html>
